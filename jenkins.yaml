@@ -2,6 +2,9 @@ jenkins:
   systemMessage: "Jenkins as Code"
   views:
     - list:
+        includeRegex: ".*"
+        name: "All"
+    - list:
         includeRegex: ".*Builds.*"
         name: "MobileBuilds"
     - list:
