@@ -1,0 +1,62 @@
+jenkins:
+  systemMessage: "Jenkins as Code"
+  views:
+    - list:
+        includeRegex: ".*Builds.*"
+        name: "MobileBuilds"
+    - list:
+        includeRegex: "Stages.*"
+        name: "Stages"
+    - list:
+        includeRegex: ".*Tests.*"
+        name: "Tests"
+
+tool:
+  allure:
+    installations:
+    - name: "Allure 2.28.1"
+      properties:
+      - installSource:
+          installers:
+          - allureCommandlineInstaller:
+              id: "2.28.1"
+
+unclassified:
+  simple-theme-plugin:
+    elements:
+    - cssUrl:
+        url: "https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-teal.css"
+
+jobs:
+  - script: >
+      pipelineJob('DeployJenkins') {
+        triggers {
+          scm('* * * * *')
+        }
+        definition {
+          cps {
+            script("""\
+              node('master') {
+                stage('Deploy Jenkins') {
+                  git(url: 'https://github.com/d-shch/jenkins-as-code.git', 
+                    branch: 'master')
+                  sh(label: 'Deploy Jobs via JJB', 
+                    script: '''
+                      jenkins-jobs --ignore-cache --log_level debug --conf jenkins_jobs.ini update jobs
+                    ''')
+                  sh(label: 'Update Jenkins config', 
+                    script: '''
+                      rm /usr/share/jenkins/jenkins.yaml
+                      cp jenkins.yaml /usr/share/jenkins/jenkins.yaml
+                      curl -X POST localhost:8080/configuration-as-code/reload
+                    ''')
+                  sh(label: 'Install plugins', 
+                    script: '''
+                      /usr/local/bin/install-plugins.sh < plugins.txt
+                    ''')
+                }
+              }""".stripIndent())
+          }
+        }
+      }
+
