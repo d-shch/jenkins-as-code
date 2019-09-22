@@ -1,0 +1,7 @@
+- job:
+    name: 'FeestyleJobExample'
+    project-type: freestyle
+    node: master
+    builders:
+        - shell: 'echo "FeestyleJobExample"'
+    
