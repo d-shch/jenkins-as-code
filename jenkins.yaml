@@ -11,7 +11,7 @@ jenkins:
         includeRegex: "Stages.*"
         name: "Stages"
     - list:
-        includeRegex: ".*tests.*"
+        includeRegex: ".*test.*"
         name: "Tests"
 
 tool:

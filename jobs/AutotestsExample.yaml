@@ -7,6 +7,8 @@
             browser: 'Firefox'
         - 'UIAutotest{browser}':
             browser: 'Opera'
+        - 'UIAutotest{browser}':
+            browser: 'IE'
 - job-template:
     name: 'UIAutotest{browser}'
     project-type: pipeline
