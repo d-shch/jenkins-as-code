@@ -4,4 +4,3 @@
     node: master
     builders:
         - shell: 'echo "FeestyleJobExample"'
-    

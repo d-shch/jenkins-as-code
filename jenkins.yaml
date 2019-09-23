@@ -29,6 +29,17 @@ unclassified:
     elements:
     - cssUrl:
         url: "https://cdn.rawgit.com/afonsof/jenkins-material-theme/gh-pages/dist/material-teal.css"
+  globalLibraries:
+    libraries:
+    - defaultVersion: "master"
+      name: "lib"
+      retriever:
+        modernSCM:
+          scm:
+            git:
+              remote: "https://github.com/d-shch/jenkins-as-code.git"
+              traits:
+              - "branchDiscoveryTrait"
 
 jobs:
   - script: >
@@ -47,15 +58,16 @@ jobs:
                     script: '''
                       jenkins-jobs --ignore-cache --log_level debug --conf jenkins_jobs.ini update jobs
                     ''')
+                  sh(label: 'Install plugins', 
+                    script: '''
+                      wget http://localhost:8080/jnlpJars/jenkins-cli.jar
+                      java -jar jenkins-cli.jar -s http://localhost:8080/ install-plugin `cat plugins.txt`
+                    ''')
                   sh(label: 'Update Jenkins config', 
                     script: '''
                       rm /usr/share/jenkins/jenkins.yaml
                       cp jenkins.yaml /usr/share/jenkins/jenkins.yaml
                       curl -X POST localhost:8080/configuration-as-code/reload
-                    ''')
-                  sh(label: 'Install plugins', 
-                    script: '''
-                      /usr/local/bin/install-plugins.sh < plugins.txt
                     ''')
                 }
               }""".stripIndent())

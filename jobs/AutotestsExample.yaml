@@ -1,0 +1,30 @@
+- project:
+    name: AutotestsExample
+    jobs:
+        - 'UIAutotest{browser}':
+            browser: 'GoogleChrome'
+        - 'UIAutotest{browser}':
+            browser: 'Firefox'
+        - 'UIAutotest{browser}':
+            browser: 'Opera'
+- job-template:
+    name: 'UIAutotest{browser}'
+    project-type: pipeline
+    sandbox: true
+    pipeline-scm:
+        scm:
+        - git:
+            url: https://github.com/d-shch/jenkins-as-code.git
+            branches:
+                - '*/master'
+        script-path: pipelines/UIAutotestExample.groovy
+        lightweight-checkout: true
+    parameters:
+        - string:
+            default: 'master'
+            description: ''
+            name: BRANCH
+    properties:
+        - inject:
+            properties-content: |
+                BROWSER={browser}
