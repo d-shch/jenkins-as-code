@@ -51,6 +51,7 @@ jobs:
           cps {
             script("""\
               node('master') {
+                deleteDir()
                 stage('Deploy Jenkins') {
                   git(url: 'https://github.com/d-shch/jenkins-as-code.git', 
                     branch: 'master')
