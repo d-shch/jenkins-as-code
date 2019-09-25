@@ -1,5 +1,5 @@
 - project:
-    name: AutotestsExample
+    name: StegesExample
     jobs:
         - 'Stage{user}':
             user: 'Ivamov'
