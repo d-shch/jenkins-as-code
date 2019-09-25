@@ -5,9 +5,6 @@ jenkins:
         includeRegex: ".*"
         name: "All"
     - list:
-        includeRegex: ".*Builds.*"
-        name: "MobileBuilds"
-    - list:
         includeRegex: "Stages.*"
         name: "Stages"
     - list:

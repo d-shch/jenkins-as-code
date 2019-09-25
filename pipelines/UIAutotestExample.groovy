@@ -15,6 +15,11 @@ node('master') {
             """)
     }
     stage('Allure report') {
+        sh(label: "Create Allure report for example",
+            script: """
+                mkdir allure-report
+                echo '{"name":"Test","status":"passed","stage":"finished"}' > allure_report/test.json
+            """)
         lib.allureReportExample('allure_report')
     }
 }

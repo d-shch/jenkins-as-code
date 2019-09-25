@@ -1,0 +1,38 @@
+- project:
+    name: AutotestsExample
+    jobs:
+        - 'Stage{user}':
+            user: 'Ivamov'
+        - 'Stage{user}':
+            user: 'Petrov'
+        - 'Stage{user}':
+            user: 'Sidorov'
+        - 'Stage{user}':
+            user: 'Pupkin'
+        - 'Stage{user}':
+            user: 'Vasileva'
+        - 'Stage{user}':
+            user: 'Romashkina'
+        - 'Stage{user}':
+            user: 'Chokoladov'
+- job-template:
+    name: 'Stage{user}'
+    project-type: pipeline
+    sandbox: true
+    pipeline-scm:
+        scm:
+        - git:
+            url: https://github.com/d-shch/jenkins-as-code.git
+            branches:
+                - '*/master'
+        script-path: pipelines/StagesExample.groovy
+        lightweight-checkout: true
+    parameters:
+        - string:
+            default: 'master'
+            description: ''
+            name: BACK_BRANCH
+        - string:
+            default: 'master'
+            description: ''
+            name: FRONT_BRANCH
