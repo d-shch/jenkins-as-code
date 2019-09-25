@@ -5,7 +5,7 @@ jenkins:
         includeRegex: ".*"
         name: "All"
     - list:
-        includeRegex: "Stages.*"
+        includeRegex: "Stage.*"
         name: "Stages"
     - list:
         includeRegex: ".*test.*"
