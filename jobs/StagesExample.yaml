@@ -2,7 +2,7 @@
     name: StegesExample
     jobs:
         - 'Stage{user}':
-            user: 'Ivamov'
+            user: 'Ivanov'
         - 'Stage{user}':
             user: 'Petrov'
         - 'Stage{user}':
