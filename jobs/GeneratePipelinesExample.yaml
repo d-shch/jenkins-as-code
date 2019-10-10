@@ -1,16 +1,16 @@
 - project:
     name: GeneratePipelineExample
     jobs:
-        - 'Pipeline{name}':
+        - 'Pipeline{file_name}':
             file_name: 'ScriptedExample1'
-        - 'Pipeline{name}':
+        - 'Pipeline{file_name}':
             file_name: 'ScriptedExample2'
-        - 'Pipeline{name}':
+        - 'Pipeline{file_name}':
             file_name: 'DeclarativeExample1'
-        - 'Pipeline{name}':
+        - 'Pipeline{file_name}':
             file_name: 'DeclarativeExample2'
 - job-template:
-    name: 'Pipeline{name}'
+    name: 'Pipeline{file_name}'
     project-type: pipeline
     sandbox: true
     pipeline-scm:
