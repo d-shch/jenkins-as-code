@@ -10,6 +10,9 @@ jenkins:
     - list:
         includeRegex: ".*test.*"
         name: "Tests"
+    - list:
+        includeRegex: "Pipeline.*"
+        name: "PipelineExamples"
 
 tool:
   allure:
