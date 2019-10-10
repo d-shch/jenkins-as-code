@@ -1,0 +1,23 @@
+- project:
+    name: GeneratePipelineExample
+    jobs:
+        - 'Pipeline{name}':
+            file_name: 'ScriptedExample1'
+        - 'Pipeline{name}':
+            file_name: 'ScriptedExample2'
+        - 'Pipeline{name}':
+            file_name: 'DeclarativeExample1'
+        - 'Pipeline{name}':
+            file_name: 'DeclarativeExample2'
+- job-template:
+    name: 'Stage{name}'
+    project-type: pipeline
+    sandbox: true
+    pipeline-scm:
+        scm:
+        - git:
+            url: https://github.com/d-shch/jenkins-as-code.git
+            branches:
+                - '*/master'
+        script-path: pipelines/{filename}.groovy
+        lightweight-checkout: true

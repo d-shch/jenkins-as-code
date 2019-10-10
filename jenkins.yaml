@@ -14,12 +14,12 @@ jenkins:
 tool:
   allure:
     installations:
-    - name: "Allure 2.28.1"
+    - name: "Allure"
       properties:
       - installSource:
           installers:
           - allureCommandlineInstaller:
-              id: "2.28.1"
+              id: "2.13.0"
 
 unclassified:
   simple-theme-plugin:
@@ -29,7 +29,7 @@ unclassified:
   globalLibraries:
     libraries:
     - defaultVersion: "master"
-      name: "lib"
+      name: "lib_name"
       retriever:
         modernSCM:
           scm:

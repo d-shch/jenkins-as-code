@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.189-alpine
+FROM jenkins/jenkins:2.193-alpine
 MAINTAINER Dmitry Shcherbakov
 
 ENV CASC_JENKINS_CONFIG /usr/share/jenkins/jenkins.yaml
@@ -14,4 +14,4 @@ USER jenkins
 
 COPY jenkins.yaml /usr/share/jenkins/jenkins.yaml
 COPY plugins.txt /usr/share/jenkins/plugins.txt
-RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/plugins.txt
+RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/plugins.txt; exit 0

@@ -1,4 +1,4 @@
-@Library('lib') _
+@Library('lib_name') _
 
 node('master') {
     stage('Precondition') {
@@ -20,6 +20,6 @@ node('master') {
                 mkdir allure-report
                 echo '{"name":"Test","status":"passed","stage":"finished"}' > allure_report/test.json
             """)
-        lib.allureReportExample('allure_report')
+        lib_name.allureReportExample('allure_report')
     }
 }
