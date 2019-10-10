@@ -10,7 +10,7 @@
         - 'Pipeline{name}':
             file_name: 'DeclarativeExample2'
 - job-template:
-    name: 'Stage{name}'
+    name: 'Pipeline{name}'
     project-type: pipeline
     sandbox: true
     pipeline-scm:
