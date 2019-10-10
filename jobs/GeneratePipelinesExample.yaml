@@ -19,5 +19,5 @@
             url: https://github.com/d-shch/jenkins-as-code.git
             branches:
                 - '*/master'
-        script-path: pipelines/{filename}.groovy
+        script-path: pipelines/{file_name}.groovy
         lightweight-checkout: true
